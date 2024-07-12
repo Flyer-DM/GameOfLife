@@ -1,5 +1,6 @@
 #aliveCells,
-#deadCells {
+#deadCells,
+#generationNum {
     position: absolute;
     left: 1230px;
 }
@@ -10,4 +11,8 @@
 
 #deadCells {
     top: 50px;
+}
+
+#generationNum {
+    top: 90px;
 }

@@ -101,6 +101,19 @@ async function game() {
         var numOfAliveCells = aliveCells(grid);
         document.getElementById('aliveCells').innerHTML = "AliveCells: " + numOfAliveCells;
         document.getElementById('deadCells').innerHTML = "DeadCells: " + deadCells(grid, numOfAliveCells);
+        document.getElementById('generationNum').innerHTML = "Generation number: " + generation;
+        if (numOfAliveCells - nextGen == 0) {
+            nextGenCount++;
+        }
+        else {
+            nextGenCount = 0;
+        }
+        if (nextGenCount == 2) {
+            document.getElementById('generationNum').innerHTML = "Game ended at generation: " + (generation - nextGenCount);
+            break;
+        }
+        generation++;
+        nextGen = numOfAliveCells;
         await delay(100);
     }
 }
@@ -111,4 +124,8 @@ const SCREEN_HEIGHT = 800 + 1;
 const RESOLUTION = 20;
 const WIDTH = Math.ceil(SCREEN_WIDTH / RESOLUTION) + 1;
 const HEIGHT = Math.ceil(SCREEN_HEIGHT / RESOLUTION) + 1;
+
+var generation = 1;
+var nextGen = 0;
+var nextGenCount = 0;
 game();
