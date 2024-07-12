@@ -85,19 +85,30 @@ function updateGrid(grid) {
     return newGrid;
 }
 
+function aliveCells(grid) {
+    return grid.flat().reduce((sum, currentValue) => sum + currentValue);
+}
+
+function deadCells(grid, aliveCells) {
+    return (grid.length * grid[0].length) - aliveCells;
+}
+
 async function game() {
     var grid = makeGrid(WIDTH, HEIGHT);
     while (true) {
         grid = updateGrid(grid);
         drawGrid(grid);
+        var numOfAliveCells = aliveCells(grid);
+        document.getElementById('aliveCells').innerHTML = "AliveCells: " + numOfAliveCells;
+        document.getElementById('deadCells').innerHTML = "DeadCells: " + deadCells(grid, numOfAliveCells);
         await delay(100);
     }
 }
 
 
-const WIDTH = 150;
-const HEIGHT = 100;
 const SCREEN_WIDTH = 1200 + 1;
 const SCREEN_HEIGHT = 800 + 1;
 const RESOLUTION = 20;
+const WIDTH = Math.ceil(SCREEN_WIDTH / RESOLUTION) + 1;
+const HEIGHT = Math.ceil(SCREEN_HEIGHT / RESOLUTION) + 1;
 game();

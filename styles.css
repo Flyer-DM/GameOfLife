@@ -1,0 +1,13 @@
+#aliveCells,
+#deadCells {
+    position: absolute;
+    left: 1230px;
+}
+
+#aliveCells {
+    top: 10px;
+}
+
+#deadCells {
+    top: 50px;
+}
